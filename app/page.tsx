@@ -55,47 +55,73 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <h1 className="text-5xl font-bold text-gray-800 mb-6">画像アップロード</h1>
+    <div className="min-h-screen bg-orange-50">
+      <header className="relative text-white py-12 shadow-lg overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/Header.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="container mx-auto px-4 relative z-10">
+          <h1 className="text-3xl font-bold drop-shadow-lg">まったり犬写真館</h1>
+          <p className="text-base mt-1 drop-shadow-md">癒しのわんこ写真をみんなにシェアしよう</p>
+        </div>
+      </header>
 
-          <form onSubmit={handleUpload} className="space-y-4">
-            <div>
-              <input
-                type="file"
-                name="file"
-                accept=".jpg,.jpeg,.png"
-                className="block w-full text-lg text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-lg file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                required
-              />
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row gap-6">
+          <aside className="lg:w-80 space-y-4">
+            <div className="bg-white rounded-2xl shadow-md p-6 border-4 border-pink-200">
+              <h2 className="text-xl font-bold text-pink-600 mb-4">写真をアップロード</h2>
+              <form onSubmit={handleUpload} className="space-y-4">
+                <div>
+                  <input
+                    type="file"
+                    name="file"
+                    accept=".jpg,.jpeg,.png"
+                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-pink-400 to-orange-400 text-white py-3 px-6 rounded-full hover:from-pink-500 hover:to-orange-500 transition font-bold shadow-lg"
+                >
+                  アップロード！
+                </button>
+              </form>
             </div>
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-4 px-6 rounded-lg hover:bg-indigo-700 transition text-xl font-semibold"
-            >
-              アップロード
-            </button>
-          </form>
 
-          {images.length > 0 && (
-            <div className="mt-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">アップロード済み画像</h2>
-              <div className="grid grid-cols-3 gap-4">
-                {images.map((img) => (
-                  <button
-                    key={img}
-                    onClick={() => window.open(img, '_blank')}
-                    className="aspect-square bg-gray-100 rounded-lg hover:opacity-80 transition overflow-hidden"
-                  >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
+            <div className="bg-gradient-to-br from-pink-100 to-orange-100 rounded-2xl shadow-md p-6 border-4 border-pink-200">
+              <h3 className="font-bold text-pink-700 mb-2">🐾 このサイトについて</h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                みんなの可愛いわんこの写真を集めて癒されるサイトです。あなたの愛犬の写真もぜひシェアしてください！
+              </p>
             </div>
-          )}
+          </aside>
 
-          <CollapsibleSection title="ファイルの検証" bgColor="bg-blue-50" borderColor="border-blue-200" textColor="text-blue-800">
+          <main className="flex-1">
+            <div className="bg-white rounded-2xl shadow-md p-6 mb-6 border-4 border-orange-200">
+              <h2 className="text-2xl font-bold text-orange-600 mb-1">みんなの可愛いわんこたち</h2>
+              <p className="text-sm text-gray-600 mb-4">クリックしたら画像が見れるよ！</p>
+              {images.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {images.map((img) => (
+                    <button
+                      key={img}
+                      onClick={() => window.open(img, '_blank')}
+                      className="aspect-square bg-pink-50 rounded-xl hover:scale-105 transition-transform overflow-hidden shadow-md border-2 border-pink-200"
+                    >
+                      <img src={img} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-500 text-center py-8">まだ写真がありません。最初の1枚をアップロードしてね！</p>
+              )}
+            </div>
+
+            <CollapsibleSection title="アップロードファイルの検証" bgColor="bg-blue-50" borderColor="border-blue-300" textColor="text-blue-800">
             <div className="space-y-4">
               <div>
                 <h4 className="text-lg font-semibold text-blue-800 mb-2">1. フロントエンド: 拡張子チェック</h4>
@@ -122,10 +148,10 @@ if (!['image/jpeg', 'image/png'].includes(contentType)) {
             </div>
           </CollapsibleSection>
 
-          <CollapsibleSection title="攻撃スクリプト" bgColor="bg-yellow-50" borderColor="border-yellow-200" textColor="text-yellow-800">
+            <CollapsibleSection title="攻撃スクリプト" bgColor="bg-yellow-50" borderColor="border-yellow-300" textColor="text-yellow-800">
             <SyntaxHighlighter language="javascript" style={vscDarkPlus} customStyle={{ fontSize: '0.875rem', borderRadius: '0.5rem' }}>
 {`// HTMLファイルを作成
-const html = '<!DOCTYPE html><html><body><h1>🚨 XSS</h1><script>alert("Attack!")</script></body></html>';
+const html = '<!DOCTYPE html><html><body><h1>XSS</h1><script>alert("Attack!")</script></body></html>';
 
 // Content-Typeを 'image/jpeg' に偽装
 const blob = new Blob([html], { type: 'image/jpeg' });
@@ -138,7 +164,8 @@ dt.items.add(file);
 const input = document.querySelector('input[type="file"]');
 input.files = dt.files;`}
             </SyntaxHighlighter>
-          </CollapsibleSection>
+            </CollapsibleSection>
+          </main>
         </div>
       </div>
     </div>
