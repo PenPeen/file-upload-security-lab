@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      animation: blink 1s infinite;
+      text-shadow: 0 0 10px #0f0;
+    }
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0.5; }
+    }
+    #output {
+      margin-top: 30px;
+      line-height: 1.8;
+    }
+    pre {
+      background: #111;
+      padding: 10px;
+      border-left: 3px solid #0f0;
+      margin: 5px 0;
+      overflow-x: auto;
+    }
+    .status {
+      color: #ff0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚨 SYSTEM COMPROMISED 🚨</h1>
+  <div id="output"></div>
+  <script>
+    (function() {
+      const output = document.getElementById('output');
+
+      // Cookie盗聴
+      const cookies = document.cookie;
+      output.innerHTML += '<p class="status">📡 Stealing cookies...</p>';
+      output.innerHTML += '<pre>' + (cookies || '[No cookies found]') + '</pre>';
+
+      // LocalStorage盗聴
+      output.innerHTML += '<p class="status">📡 Stealing localStorage...</p>';
+      const storage = JSON.stringify(localStorage);
+      output.innerHTML += '<pre>' + (storage || '{}') + '</pre>';
+
+      // SessionStorage盗聴
+      output.innerHTML += '<p class="status">📡 Stealing sessionStorage...</p>';
+      const session = JSON.stringify(sessionStorage);
+      output.innerHTML += '<pre>' + (session || '{}') + '</pre>';
+
+      // ブラウザ情報収集
+      output.innerHTML += '<p class="status">📡 Collecting browser info...</p>';
+      output.innerHTML += '<pre>UserAgent: ' + navigator.userAgent + '</pre>';
+      output.innerHTML += '<pre>Platform: ' + navigator.platform + '</pre>';
+      output.innerHTML += '<pre>Language: ' + navigator.language + '</pre>';
+
+      // 外部サーバーへ送信
+      output.innerHTML += '<p class="status">📤 Sending data to attacker server...</p>';
+      output.innerHTML += '<pre>POST https://example.com/steal</pre>';
+      output.innerHTML += '<p style="color:#f00;font-weight:bold;margin-top:20px;">✅ ATTACK SUCCESSFUL - DATA EXFILTRATED</p>';
+    })();
+  </script>
+</body>
+</html>

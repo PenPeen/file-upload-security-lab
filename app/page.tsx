@@ -167,8 +167,9 @@ if (!['image/jpeg', 'image/png'].includes(contentType)) {
           </CollapsibleSection>
 
             <CollapsibleSection title="攻撃スクリプト" bgColor="bg-yellow-50" borderColor="border-yellow-300" textColor="text-yellow-800">
-            <CodeBlock language="javascript" code={`// HTMLファイルを作成
-const html = '<!DOCTYPE html><html><body><h1>XSS</h1><script>alert("Attack!")</script></body></html>';
+            <CodeBlock language="javascript" code={`// attack.htmlから読み込み
+const response = await fetch('./attack.html');
+const html = await response.text();
 
 // Content-Typeを 'image/jpeg' に偽装
 const blob = new Blob([html], { type: 'image/jpeg' });
