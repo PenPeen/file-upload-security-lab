@@ -54,9 +54,6 @@ export default function Home() {
 
           <form onSubmit={handleUpload} className="space-y-4">
             <div>
-              <label className="block text-xl font-medium text-gray-700 mb-3">
-                画像を選択 (.jpg, .png のみ)
-              </label>
               <input
                 type="file"
                 name="file"
@@ -79,7 +76,7 @@ export default function Home() {
                 onClick={handleViewImage}
                 className="w-full bg-red-600 text-white py-4 px-6 rounded-lg hover:bg-red-700 transition text-xl font-semibold"
               >
-                🔗 アップロードしたファイルを開く
+                アップロードしたファイルを開く
               </button>
               <p className="text-base text-gray-500 mt-3 text-center">
                 ※ 新しいタブで開くとJavaScriptが実行されます
