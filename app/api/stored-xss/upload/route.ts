@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'ファイルがありません' }, { status: 400 });
   }
 
-  // 脆弱性デモ: Content-Typeのみ検証（ファイル内容は検証しない）
   const contentType = file.type;
   
   if (!['image/jpeg', 'image/png'].includes(contentType)) {
@@ -20,8 +19,7 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  // 脆弱性: ファイル内容を検証せずにそのまま保存
-  const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+  const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'stored-xss');
   await mkdir(uploadDir, { recursive: true });
 
   const fileName = file.name;
@@ -29,7 +27,7 @@ export async function POST(request: NextRequest) {
   await writeFile(filePath, buffer);
 
   return NextResponse.json({ 
-    url: `/uploads/${fileName}`,
+    url: `/uploads/stored-xss/${fileName}`,
     message: 'アップロード成功'
   });
 }

@@ -44,7 +44,7 @@ export default function Home() {
   const [images, setImages] = useState<string[]>([]);
 
   const fetchImages = async () => {
-    const res = await fetch('/api/images');
+    const res = await fetch('/api/stored-xss/images');
     const data = await res.json();
     setImages(data.images);
   };
@@ -60,7 +60,7 @@ export default function Home() {
 
     if (!file) return;
 
-    const res = await fetch('/api/upload', {
+    const res = await fetch('/api/stored-xss/upload', {
       method: 'POST',
       body: formData,
     });

@@ -41,11 +41,11 @@ yarn-error.log*
 next-env.d.ts
 
 # images
-public/uploads/*
-!public/uploads/ot376.png
-!public/uploads/ot376_1.png
-!public/uploads/ot376_2.png
-!public/uploads/ot376_3.png
+public/uploads/stored-xss/*
+!public/uploads/stored-xss/ot376_1.png
+!public/uploads/stored-xss/ot376_2.png
+!public/uploads/stored-xss/ot376_3.png
+public/uploads/rce/*
 public/compressed/*
 
 /app/generated/prisma
