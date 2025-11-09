@@ -6,7 +6,8 @@
 ## TOP
 ![ホーム画面](public/home.png)
 
-## 蓄積型クロスサイトスクリプティング
+<details>
+<summary>蓄積型クロスサイトスクリプティング</summary>
 
 ### HOME画面
 ![攻撃実行後の画面](public/stored-xss-home.png)
@@ -19,3 +20,5 @@
 - Content-Typeは偽装可能（クライアント側で設定）
 - HTMLファイルを `image/jpeg` として偽装してアップロード
 - ファイルを開くと、JavaScriptが実行される
+
+</details>
