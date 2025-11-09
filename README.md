@@ -27,10 +27,10 @@
 <summary>RCE</summary>
 
 ### HOME画面
-![HOME](rce-home.png)
+![HOME](public/rce-home.png)
 
 ### 攻撃実行後
-![攻撃実行後の画面](rce-attack.png)
+![攻撃実行後の画面](public/rce-attack.png)
 
 ### 脆弱性
 
